@@ -17,7 +17,13 @@
       "id": "initial_time",
       "label": "Initial Time (in minutes)",
       "default": 5
-    }
+    },
+	{
+	  "type": "text",
+	  "id": "hurry_up_text",
+	  "label": "Hurry Up Text",
+	  "default": "Hurry up! Offer ends in:"
+	}
   ]
 }
 {% endschema %}
@@ -25,7 +31,7 @@
 {% assign initial_time = block.settings.initial_time %}
 
 <div> 
-  <div> Hurry up! Offer ends in: </div>
+  <div> {{ block.settings.hurry_up_text }} </div>
   <div class="countdown-timer" style="color: {{ block.settings.timer_color }}"></div>
 </div>
 <script>
@@ -36,7 +42,6 @@
 		function updateTimer() {
 		  var minutes = Math.floor(currentTime / 60000);
 		  var seconds = Math.floor((currentTime % 60000) / 1000);
-		  console.log({minutes, seconds})
 	  
 		  countdownElement.innerHTML = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 	  
