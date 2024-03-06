@@ -1,0 +1,57 @@
+{{  'countdown.css' | asset_url | stylesheet_tag }}
+{% comment %} {{  'countdown.js' | asset_url | script_tag }} {% endcomment %}
+
+{% schema %}
+{
+  "name": "Countdown Timer",
+  "target": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "timer_color",
+      "label": "Timer Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "initial_time",
+      "label": "Initial Time (in minutes)",
+      "default": 5
+    },
+	{
+	  "type": "text",
+	  "id": "hurry_up_text",
+	  "label": "Hurry Up Text",
+	  "default": "Hurry up! Offer ends in:"
+	}
+  ]
+}
+{% endschema %}
+
+{% assign initial_time = block.settings.initial_time %}
+
+<div> 
+  <div> {{ block.settings.hurry_up_text }} </div>
+  <div class="countdown-timer" style="color: {{ block.settings.timer_color }}"></div>
+</div>
+<script>
+	(function() {
+		var countdownElement = document.querySelector('.countdown-timer');
+		var currentTime = 60000* {{ block.settings.initial_time }};
+	  
+		function updateTimer() {
+		  var minutes = Math.floor(currentTime / 60000);
+		  var seconds = Math.floor((currentTime % 60000) / 1000);
+	  
+		  countdownElement.innerHTML = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+	  
+		  if (currentTime > 0) {
+			currentTime -= 1000;
+			setTimeout(updateTimer, 1000);
+		  }
+		}
+	  
+		updateTimer();
+	  })();
+</script>
+
