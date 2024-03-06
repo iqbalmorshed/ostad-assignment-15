@@ -1,5 +1,4 @@
 {{  'countdown.css' | asset_url | stylesheet_tag }}
-{% comment %} {{  'countdown.js' | asset_url | script_tag }} {% endcomment %}
 
 {% schema %}
 {
@@ -27,8 +26,6 @@
   ]
 }
 {% endschema %}
-
-{% assign initial_time = block.settings.initial_time %}
 
 <div> 
   <div> {{ block.settings.hurry_up_text }} </div>
