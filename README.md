@@ -15,7 +15,12 @@ Once the app is installed, the user will be navigated to the store admin panel o
 On the left, under "Sales channels" section click "Online Store". From the Online Store menu click "Themes".
 In the Themes page, click "Customize" to customize the theme.
 In the "Header" section, click "Add block". In the pop-up menu, Under the "App Blocks" section, select this exention with name "Countdown Timer".
+![alt text](image-1.png)
 Save the change.
+
+## Customizing the extension
+User can customize the Timer color, urgency text and the initial time to start the timer from the block settings.
+![alt text](image-2.png)
 
 ## Troubleshooting
 This app is tested on MacOS. So, if you experice any issue on Windows machine, please try on MacOS. 
