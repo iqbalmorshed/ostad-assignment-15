@@ -15,7 +15,7 @@
     {
       "type": "number",
       "id": "initial_time",
-      "label": "Initial Time (in seconds)",
+      "label": "Initial Time (in minutes)",
       "default": 5
     }
   ]
@@ -24,11 +24,14 @@
 
 {% assign initial_time = block.settings.initial_time %}
 
-<div class="countdown-timer"></div>
+<div> 
+  <div> Hurry up! Offer ends in: </div>
+  <div class="countdown-timer" style="color: {{ block.settings.timer_color }}"></div>
+</div>
 <script>
 	(function() {
 		var countdownElement = document.querySelector('.countdown-timer');
-		var currentTime = 60000*2;
+		var currentTime = 60000* {{ block.settings.initial_time }};
 	  
 		function updateTimer() {
 		  var minutes = Math.floor(currentTime / 60000);
