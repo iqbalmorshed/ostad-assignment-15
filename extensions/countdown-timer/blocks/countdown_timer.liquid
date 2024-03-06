@@ -1,0 +1,49 @@
+{{  'countdown.css' | asset_url | stylesheet_tag }}
+{% comment %} {{  'countdown.js' | asset_url | script_tag }} {% endcomment %}
+
+{% schema %}
+{
+  "name": "Countdown Timer",
+  "target": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "timer_color",
+      "label": "Timer Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "initial_time",
+      "label": "Initial Time (in seconds)",
+      "default": 5
+    }
+  ]
+}
+{% endschema %}
+
+{% assign initial_time = block.settings.initial_time %}
+
+<div class="countdown-timer"></div>
+<script>
+	(function() {
+		var countdownElement = document.querySelector('.countdown-timer');
+		var currentTime = 60000*2;
+	  
+		function updateTimer() {
+		  var minutes = Math.floor(currentTime / 60000);
+		  var seconds = Math.floor((currentTime % 60000) / 1000);
+		  console.log({minutes, seconds})
+	  
+		  countdownElement.innerHTML = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+	  
+		  if (currentTime > 0) {
+			currentTime -= 1000;
+			setTimeout(updateTimer, 1000);
+		  }
+		}
+	  
+		updateTimer();
+	  })();
+</script>
+
